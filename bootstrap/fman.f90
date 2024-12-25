@@ -52019,41 +52019,41 @@ integer                        :: lun
 !  FORM      =  FORMATTED   |  UNFORMATTED
 !  POSITION  =  ASIS        |  REWIND       |  APPEND
 !  STATUS    =  NEW         |  REPLACE      |  OLD     |  SCRATCH   | UNKNOWN
-character(len=20)             :: access         ; namelist/inquire/access
-character(len=20)             :: asynchronous   ; namelist/inquire/asynchronous
-character(len=20)             :: blank          ; namelist/inquire/blank
-character(len=20)             :: decimal        ; namelist/inquire/decimal
-character(len=20)             :: delim          ; namelist/inquire/delim
-character(len=20)             :: direct         ; namelist/inquire/direct
-character(len=20)             :: encoding       ; namelist/inquire/encoding
-logical                       :: exist          ; namelist/inquire/exist
+character(len=20)             :: access         ;
+character(len=20)             :: asynchronous   ;
+character(len=20)             :: blank          ;
+character(len=20)             :: decimal        ;
+character(len=20)             :: delim          ;
+character(len=20)             :: direct         ;
+character(len=20)             :: encoding       ;
+logical                       :: exist          ;
 
-character(len=20)             :: form           ; namelist/inquire/form
-character(len=20)             :: formatted      ; namelist/inquire/formatted
-character(len=20)             :: unformatted    ; namelist/inquire/unformatted
+character(len=20)             :: form           ;
+character(len=20)             :: formatted      ;
+character(len=20)             :: unformatted    ;
 
-integer                       :: id             ; namelist/inquire/id
-character(len=20)             :: name           ; namelist/inquire/name
-logical                       :: named          ; namelist/inquire/named
-integer                       :: nextrec        ; namelist/inquire/nextrec
-integer                       :: number         ; namelist/inquire/number
-logical                       :: opened         ; namelist/inquire/opened
-character(len=20)             :: pad            ; namelist/inquire/pad
-logical                       :: pending        ; namelist/inquire/pending
-integer                       :: pos            ; namelist/inquire/pos
-character(len=20)             :: position       ; namelist/inquire/position
+integer                       :: id             ;
+character(len=20)             :: name           ;
+logical                       :: named          ;
+integer                       :: nextrec        ;
+integer                       :: number         ;
+logical                       :: opened         ;
+character(len=20)             :: pad            ;
+logical                       :: pending        ;
+integer                       :: pos            ;
+character(len=20)             :: position       ;
 
-character(len=20)             :: action         ; namelist/inquire/action
-character(len=20)             :: read           ; namelist/inquire/read
-character(len=20)             :: readwrite      ; namelist/inquire/readwrite
-character(len=20)             :: write          ; namelist/inquire/write
+character(len=20)             :: action         ;
+character(len=20)             :: read           ;
+character(len=20)             :: readwrite      ;
+character(len=20)             :: write          ;
 
-integer                       :: recl           ; namelist/inquire/recl
-character(len=20)             :: round          ; namelist/inquire/round
-character(len=20)             :: sequential     ; namelist/inquire/sequential
-character(len=20)             :: sign           ; namelist/inquire/sign
-integer                       :: size           ; namelist/inquire/size
-character(len=20)             :: stream         ; namelist/inquire/stream
+integer                       :: recl           ;
+character(len=20)             :: round          ;
+character(len=20)             :: sequential     ;
+character(len=20)             :: sign           ;
+integer                       :: size           ;
+character(len=20)             :: stream         ;
 !==============================================================================================
    namein=merge_str(namein_in,'',present(namein_in))
    lun=merge(lun_in,-1,present(lun_in))
@@ -57020,7 +57020,6 @@ character(len=20) ::  &
 &  fixed=    '<w>                ',  &  ! color of leading > in demo program output
 &  output=   '<y>                ',  &  ! demo program output
 &  output_=  '</bo>              '
-namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line
    number=.false.
    remember=''
