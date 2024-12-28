@@ -33783,7 +33783,9 @@ function str(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg,
 
 ! ident_13="@(#) M_CLI2 str(3fp) writes a message to a string composed of any standard scalar types"
 
-class(*),intent(in),optional         :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
+! character(*),intent(in),optional         :: g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj
+character(*),intent(in),optional         :: g0, g2, g4, g6, g8, ga, gc, ge, gg, gi
+logical, intent(in), optional :: g1, g3, g5, g7, g9, gb, gd, gf, gh, gj
 character(len=*),intent(in),optional :: sep
 character(len=:),allocatable         :: line
 call journal(g0, g1, g2, g3, g4, g5, g6, g7, g8, g9, ga, gb, gc, gd, ge, gf, gg, gh, gi, gj, sep,line)
