@@ -40587,9 +40587,13 @@ integer                     :: i
    do i=1,len_trim(input)
       itemp = iachar(input(i:i))
       select case(itemp)
-       case(65:77,97:109)
+       case(65:77)
          itemp = itemp + 13
-       case(78:90,110:122)
+       case(97:109)
+         itemp = itemp + 13
+       case(78:90)
+         itemp = itemp - 13
+       case(110:122)
          itemp = itemp - 13
       end select
       rotate13(i:i) = char ( itemp )
@@ -40692,7 +40696,25 @@ percent_encode_characters(:)=repeat(' ',len(percent_encode_characters))
    pos=1
    do i=1,size(text)
       select case(text(i))
-      case('a':'z','A':'Z','0':'9','-','_','.','~')
+      case('a':'z')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('A':'Z')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('0':'9')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('-')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('_')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('.')
+         percent_encode_characters(pos:pos)=text(i)
+         pos=pos+1
+      case('~')
          percent_encode_characters(pos:pos)=text(i)
          pos=pos+1
       case default
@@ -43559,7 +43581,7 @@ endif
    IFSPACE: do i=1,len_trim(str)
      ch=str(i:i)
      select case(iachar(ch))
-       case(0:32,127)                                         ! space or tab character or control character
+       case(0:32)                                             ! space or tab character or control character
          if(position_in_output == 0)then                      ! still at beginning so ignore leading whitespace
             cycle IFSPACE
          elseif(.not.last_was_space) then                     ! if have not already put out a space output one
@@ -43569,7 +43591,25 @@ endif
            endif
          endif
          last_was_space=.true.
-       case(:-1,33:126,128:)                                  ! not a space, quote, or control character so copy it
+       case(127)                                              ! space or tab character or control character
+         if(position_in_output == 0)then                      ! still at beginning so ignore leading whitespace
+            cycle IFSPACE
+         elseif(.not.last_was_space) then                     ! if have not already put out a space output one
+           if(.not.nospace)then
+              position_in_output=position_in_output+1
+              outstr(position_in_output:position_in_output)=char_p
+           endif
+         endif
+         last_was_space=.true.
+       case(:-1)                                              ! not a space, quote, or control character so copy it
+         position_in_output=position_in_output+1
+         outstr(position_in_output:position_in_output)=ch
+         last_was_space=.false.
+       case(33:126)                                           ! not a space, quote, or control character so copy it
+         position_in_output=position_in_output+1
+         outstr(position_in_output:position_in_output)=ch
+         last_was_space=.false.
+       case(128:)                                             ! not a space, quote, or control character so copy it
          position_in_output=position_in_output+1
          outstr(position_in_output:position_in_output)=ch
          last_was_space=.false.
